@@ -1,0 +1,30 @@
+{% extends "logsys/base2.html" %}
+{% load i18n avatar_tags %}
+
+{% block content %}
+<div class="row d-flex">
+    <div class="col-md-6 mx-auto shadow-lg p-3 mb-5 bg-body rounded">
+        <p>{% trans "Your current avatar: " %}</p>
+        {% avatar user %}
+        {% if not avatars %}
+        <p>{% trans "You haven't uploaded an avatar yet. Please upload one now." %}</p>
+        {% endif %}
+        <form enctype="multipart/form-data" method="POST" action="{% url 'avatar_add' %}" class="mt-2">
+            {% for pic in upload_avatar_form %}
+            {{pic}} <span style="color:red">{{pic.errors|striptags}}</span>
+            {% endfor%}
+            <div class="row d-flex justify-content-between mt-2 ">
+                <div class="col-4">
+                    <p>{% csrf_token %}<input type="submit" class="btn btn-success"
+                            value="{% trans 'Upload New Image' %}" /></p>
+                </div>
+                <div class="col-4">
+                    <a href="{% url 'profile' %}" class="btn btn-secondary">Go Back</a>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

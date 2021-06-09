@@ -1,0 +1,61 @@
+{% extends "logsys/base.html" %}
+{% load static %}
+{% block title %}Login{% endblock title %}
+{% block content %}
+<div class="row g-0" style="background-color: #f7f7f7;">
+    <div class="col-lg-9 col-md-8 ">
+        <img src="{% static 'logsys/images/loginhome-min.jpg' %}" alt="loading" style="height: 100%; width: 100%; object-fit: contain">
+    </div>
+    <div class="col-lg-3 col-md-4 mt-2 shadow px-2 mb-5 bg-body rounded" style="background-color:aliceblue;">
+        <h2 class="text-center display-6 pb-2 " style="color: #212529;"><b>Rayster</b></h2>
+        {% if messages %}
+        {% for msg in messages %}
+        {{msg}}
+        {% endfor %}
+        {% endif %}
+        {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+        {{error}}
+        {% endfor %}
+        {% endif %}
+        <form action="" method="post" autocomplete="on">
+            {% csrf_token %}
+            {% for field in form %}
+            {{field}}{{field.errors|striptags}} <br>
+            {% endfor %}
+            <div class="row d-flex g-0">
+                <button type="submit" class="btn btn-outline-dark fw-bold btn-lg">Login </button>
+            </div>
+            <div class="row d-flex g-0 text-center m-2 p-2">
+                <a href="{% url 'password_reset' %}" class="link text-decoration-none">Forgot password?</a>
+            </div>
+            <div class="row g-0">
+                <div class="col-5">
+                    <hr>
+                </div>
+                <div class="col-2 text-center">or</div>
+                <div class="col-5">
+                    <hr>
+                </div>
+            </div>
+            <div class="row text-center mt-2 g-0">
+                <div class="col">
+                    <a href="{% url 'signup' %}" class="btn btn-success fw-bold">Create New Account </a>
+                </div>
+            </div>
+        </form>
+        <!-- Info page -->
+        <div class="row text-center mt-5 g-0 ">
+            <div class="col">
+                <a type="button" href="#" class="text-muted text-decoration-none"><i class="fas fa-circle fa-xs"></i> Join</a>
+                <a type="button" href="#" class="text-muted text-decoration-none"><i class="fas fa-circle fa-xs"></i> About</a>
+                <a type="button" href="#" class="text-muted text-decoration-none"><i class="fas fa-circle fa-xs"></i> Help</a>
+            </div>
+            <div class="mt-4">
+                <p class="text-muted">Rayster Inc.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

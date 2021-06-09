@@ -1,0 +1,79 @@
+{% extends "logsys/base.html" %}
+{% load static %}
+{% load avatar_tags %}
+{% block title %}Profile{% endblock title %}
+{% block csslink %}
+    <link rel="stylesheet" href="{% static 'logsys/css/logsysstyle.css' %}">
+{% endblock %}
+{% block content %}
+<!-- New Profile Page -->
+{% if messages %}
+{% for msg in messages %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>{{msg}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+<div class="row mt-2">
+    <!-- Personal info -->
+    <div class="col-md-3  border-end  ">
+        <div class="row">
+            <div class="col offset-1">
+                <div class="btn-group " role="group" aria-label="Basic outlined example">
+                    <a type="button" class="btn btn-outline-primary ml-3" href="{% url 'home' %}"> Home</a>
+                    <a type="button" class="btn btn-outline-primary" href="{% url 'avatar_change' %}">Change Avatar</a>
+                    <a type="button" class="btn btn-outline-primary" href="{% url 'logout' %}">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row ">
+            <div class="col offset-2">
+                <div>
+                    {% if user|has_avatar %}
+                    {% avatar user 200 class="img-fluid rounded img-responsive shadow p-3 mx-auto bg-body rounded " id="user_avatar" %}
+                    {% else %}
+                    <img src="{% static 'homeapp/images/defaultavatar.jpg' %}" alt="" class="img-circle img-responsive" height="200px">
+                    {% endif %}
+                </div>
+                <div class="row mx-auto">
+
+                    <h5 class="pt-3 ">Nickname: {{request.user.username}}</h5>
+                    <span class=" ">Email: {{request.user.email}}</span>
+                    <span>Joined: {{request.user.date_joined|date:"D,d M, Y"}}</span>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- personel info completed -->
+
+    </div>
+    <!-- Form changing options -->
+
+    <div class="col-md-8 m-2">        
+        <form action="" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                {{field.label_tag}}{{field}}{{field.errors|striptags}}
+            {% endfor %}
+            {% for field in profile_form %}
+                {{field.label_tag}}{{field}}{{field.errors|striptags}}
+            {% endfor %}
+            <div class="row mt-2" style="width: 20vw; margin-left: 2px;">
+                    <input type="submit" value="Save" class="btn btn-outline-secondary">
+            </div>
+        </form>
+    </div>
+    
+
+
+
+</div>
+<!-- New Profile page end -->
+
+
+
+
+{% endblock content %}
