@@ -6,11 +6,11 @@
       aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand fs-4 fw-bolder" href="#">Rayster</a>
+    <a class="navbar-brand fs-4 fw-bolder" href="{% url 'home' %}">Rayster</a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <div class="row ">
-            <a class="nav-link col active fs-5 navbar-text px-3" aria-current="page" href="{% url 'home' %}">Home</a>
+            <a class="nav-link col  fs-5 navbar-text px-3" aria-current="page" href="{% url 'home' %}">Home</a>
             <a class="nav-link col fs-5 navbar-text px-3" href="{% url 'bucket' %}">Bucket</a>
             <a class="nav-link col  fs-5 navbar-text px-3" href="{% url 'people' %}">People</a>
         </div>

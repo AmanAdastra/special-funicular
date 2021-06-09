@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'homeapp',
     'avatar',
     'crispy_forms',
+    'widget_tweaks',
+
 ]
 
 MIDDLEWARE = [
@@ -124,7 +126,11 @@ USE_TZ = False
 
 # Static files
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static'
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    
+]
 
 
 
