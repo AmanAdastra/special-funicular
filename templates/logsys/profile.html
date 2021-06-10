@@ -17,19 +17,9 @@
 {% endif %}
 <div class="row mt-2 g-0">
     <!-- Personal info -->
-    <div class="col-md-3  border-end  ">
-        <div class="row">
-            <div class="col offset-1">
-                <div class="btn-group " role="group" aria-label="Basic outlined example">
-                    <a type="button" class="btn btn-outline-primary ml-3" href="{% url 'home' %}"> Home</a>
-                    <a type="button" class="btn btn-outline-primary" href="{% url 'avatar_change' %}">Change Avatar</a>
-                    <a type="button" class="btn btn-outline-primary" href="{% url 'logout' %}">Logout</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="row ">
-            <div class="col offset-2">
+    <div class="col-md-3  border-end  ">      
+        <div class="row g-0">
+            <div class="col text-center">
                 <div>
                     {% if user|has_avatar %}
                     {% avatar user 200 class="img-fluid rounded img-responsive shadow p-3 mx-auto bg-body rounded " id="user_avatar" %}
@@ -37,16 +27,17 @@
                     <img src="{% static 'homeapp/images/defaultavatar.jpg' %}" alt="" class="img-circle img-responsive" height="200px">
                     {% endif %}
                 </div>
-                <button class="btn "  style="background-color:#bdc9e5;" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit Profile</button>
-                <div class="row mx-auto">
-
-                    <h5 class="pt-3 ">Nickname: {{request.user.username}}</h5>
-                    <span class=" ">Email: {{request.user.email|default:"Didn't made my mind"}}</span>
-                    <span class=" ">Interest: {{request.user.interest|default:"Didn't made my mind"}}</span>
-                    <span class=" ">Habit: {{request.user.want|default:"Didn't made my mind"}}</span>
-                    <span class=" ">Wants: {{request.user.habi|default:"Didn't made my mind"}}</span>
-                    <span>Joined: {{request.user.date_joined|date:"D,d M, Y"}}</span>
-                </div>
+                <a type="button" class="btn btn-light shadow-sm p-1 my-2 bg-body rounded" href="{% url 'avatar_change' %}">Change Avatar</a>
+                <button class="btn btn-light shadow-sm p-1 my-2 bg-body rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit Profile</button>                    
+                <h5 class="pt-3 ">Nickname: {{request.user.username}}</h5>
+                    
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Email: {{request.user.email|default:"Didn't made my mind"}}</li>
+                    <li class="list-group-item">Interest: {{request.user.interest|default:"Didn't made my mind"}}</li>
+                    <li class="list-group-item">Habit: {{request.user.want|default:"Didn't made my mind"}}</li>
+                    <li class="list-group-item">Wants: {{request.user.habi|default:"Didn't made my mind"}}</li>
+                    <li class="list-group-item">Joined: {{request.user.date_joined|date:"D,d M, Y"}}</li>
+                  </ul>
                 
             </div>
 
@@ -54,15 +45,6 @@
         <!-- personel info completed -->
 
     </div>
-    <!-- Form changing options -->
-
-    <div class="col-md-8 m-2">        
-        
-    </div>
-    
-
-
-
 </div>
 <!-- New Profile page end -->
 <!-- Button trigger modal -->

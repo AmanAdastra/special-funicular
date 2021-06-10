@@ -19,12 +19,12 @@
     <div class="d-flex">
       {% if request.user.is_authenticated %}
         <a href="{% url 'profile' %}" class="pr-2">
-          <img src="{% static 'homeapp/images/defaultavatar.jpg' %}" alt="" class="img-circle img-responsive" style="    margin-right: 11px;" height="35px" data-toggle="tooltip" title='me'>
+          {% avatar user 35 class="img-fluid rounded-circle img-responsive mx-2" id="user_avatar" %}
         </a>        
-        <a href="{% url 'logout' %}"  data-toggle="tooltip" title='login'><button class="btn btn-dark">Logout</button>
+        <a href="{% url 'logout' %}" ><button class="btn btn-dark">Logout</button>
         </a>
       {% else %}
-        <a href="{% url 'login' %}"  data-toggle="tooltip" title='login'><button class="btn btn-dark">Signup</button>
+        <a href="{% url 'login' %}"  ><button class="btn btn-dark">Signup</button>
         </a>
         
 

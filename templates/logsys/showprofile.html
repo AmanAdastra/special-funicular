@@ -9,78 +9,71 @@
 <!-- New Profile Page -->
 
 <div class="row mt-2">
-    <!-- Personal info -->
-    <div class="col-md-3  border-end  ">
-        <div class="row">
-            <div class="col offset-2 pl-2">
-                <div class="btn-group " role="group" aria-label="Basic outlined example">
-                    <a type="button" class="btn btn-outline-primary ml-3" href="{% url 'home' %}"> Home</a>
-                    <button class="copybtn btn btn-outline-primary ml-3" data-clipboard-text="{{user.email}}"  data-bs-toggle="tooltip" data-bs-placement="right" title="Copy Mail">
-                      Mail
-                  </button>
-                    <!-- <a type="button" class="btn btn-outline-primary ml-3" href="{% url 'home' %}"> Mail</a> -->
-                    <a type="button" class="btn btn-outline-primary ml-3" href="{% url 'home' %}"> Meet</a>
+  <!-- Personal info -->
 
-                </div>
-            </div>
+  <div class="col-md-3  border-end  ">
+    <div class="row g-0">
+      <div class="col text-center">
+        <div>
+          {% if user|has_avatar %}
+          {% avatar user 200 class="img-fluid rounded img-responsive shadow p-3 mx-auto bg-body rounded " id="user_avatar" %}
+          {% else %}
+          <img src="{% static 'homeapp/images/defaultavatar.jpg' %}" alt="" class="img-circle img-responsive"
+            height="200px">
+          {% endif %}
         </div>
 
-        <div class="row mt-2 ">
-            <div class="col offset-2">
-                <div>
-                    {% avatar user 200 class="img-fluid rounded img-responsive shadow p-2 mx-auto bg-body rounded "  id="user_avatar" %}
-                </div>
-                <h5 class="p-2 ">Nickname: {{user.username}}</h5>             
-                
-                
-            </div>
-            
-            <h6 class="text-center">Email: {{user.email|default:"Not Available"|capfirst}} </h6>
-        </div>
-        <!-- personel info completed -->
-        
-    </div>
+        <h5 class="pt-3 ">Nickname: {{request.user.username}}</h5>
 
-    <!-- Habit, Skills and Achievement Section -->
-    
-    <div class="col-md-9">
-        <span class="display-6 p-2">About Me</span>
-        <div class="accordion" id="accordionExample">
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    <span>Skills</span>
-                </button>
-              </h2>
-              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    {{user.profile.skill|default:"Not Available"|capfirst}}
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Habits
-                </button>
-              </h2>
-              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    {{user.profile.habit|default:"Not Available"|capfirst}}
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  Achievement
-                </button>
-              </h2>
-              
-            </div>
-          </div>        
-        <h6 class="p-2 text-muted">Joined: {{user.date_joined|date:"D,d M, Y"}}</h6>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Interest: {{request.user.interest|default:"Didn't made my mind"}}</li>
+          <li class="list-group-item">Habit: {{request.user.want|default:"Didn't made my mind"}}</li>
+          <li class="list-group-item">Wants: {{request.user.habi|default:"Didn't made my mind"}}</li>
+          <li class="list-group-item">Joined: {{request.user.date_joined|date:"D,d M, Y"}}</li>
+        </ul>
+
+      </div>
+
     </div>
+  </div>
+  <!-- personel info completed -->
+
+  <!-- Habit, Skills and Achievement Section -->
+
+  <div class="col-md-9">
+    <span class="display-6 p-2">About Me</span>
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+            aria-expanded="true" aria-controls="collapseOne">
+            <span>Skills</span>
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+          data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            {{user.profile.skill|default:"Not Available"|capfirst}}
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Habits
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+          data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            {{user.profile.habit|default:"Not Available"|capfirst}}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
 
 
