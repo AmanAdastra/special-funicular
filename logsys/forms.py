@@ -45,10 +45,9 @@ class UserProfileForm(UserChangeForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('skill','habit','achievement','talent')
+        fields = ('interest','habit','want')
         widgets = {
-            'skill':forms.Textarea(attrs={'class':'form-control textarea'}),
+            'interest':forms.Textarea(attrs={'class':'form-control textarea'}),
             'habit':forms.Textarea(attrs={'class':'form-control textarea'}),
-            'achievement':forms.TextInput(attrs={'class':'form-control'}),
-            'talent':forms.TextInput(attrs={'class':'form-control'}),
+            'want':forms.TextInput(attrs={'class':'form-control'}),
         }

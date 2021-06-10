@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from homeapp.forms import BucketForm
 from homeapp.models import Bucket
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 def home(request):
     user = User.objects.exclude(id=request.user.id)
@@ -11,6 +12,8 @@ def home(request):
 def people(request):
     return render(request,'homeapp/people.html')
 
+
+@login_required(login_url='/logsys/login/')
 def bucket(request):
     if request.method=="POST":
         fm = BucketForm(request.POST,request.FILES)
@@ -24,3 +27,6 @@ def bucket(request):
         'form':fm,
     }
     return render(request,'homeapp/bucket.html',context)
+
+def people(request):
+    return render(request,'homeapp/people.html')
