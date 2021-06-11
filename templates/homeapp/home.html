@@ -3,23 +3,40 @@
 {% load static %}
 {% block content %}
 
-<div class=" d-flex align-items-end" style="height: 82vh;">
-    <div class="scrollmenu">
-        {% for user in users %}
-        <span class="px-2">
-            <a href="{% url 'uprofile' user.id %}" class="py-2 " data-toggle="tooltip" title="{{user.username}}">
-                {% if user|has_avatar %}
-                {% avatar user 35 class="img-fluid rounded-circle img-responsive" id="user_avatar" %}
-                {% else %}
-                <img src="{% static 'homeapp/images/defaultavatar.jpg' %}" alt="" class="img-circle img-responsive"
-                    height="35px">
-                {% endif %}
-            </a>
 
+<div style="height: 83vh;">
+    {% if request.user.is_authenticated %}
+    <div>
 
-        </span>
-        {% endfor %}
-
+    </div>
+    {% else %}
+   <div class="row g-0 p-2" style="height: 27vh;">
+        <div class="col">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi quis, natus cum obcaecati ratione reprehenderit alias quos eos sunt tempora, vitae iure ut cumque quia architecto labore consequuntur officiis iusto.</div>
+   </div>
+   <div class="row g-0 p-2" style="height: 27vh;">
+       <div class="col">
+           Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste dignissimos, ducimus consectetur tempora aut voluptatibus atque odio labore animi perspiciatis alias vero earum ab repellendus fugiat similique blanditiis eos nisi?
+       </div>
+   </div>
+   {% endif %}
+   <div class="row g-0 p-2"  style="height: 27vh;">
+    <div class="col">        
+        <div class="scrollmenu">
+           {% for user in users %}
+           <span class="px-2">
+               <a href="{% url 'uprofile' user.id %}" class="py-2 " data-toggle="tooltip" title="{{user.username}}">
+                   {% if user|has_avatar %}
+                   {% avatar user 35 class="img-fluid rounded-circle img-responsive" id="user_avatar" %}
+                   {% else %}
+                   <img src="{% static 'homeapp/images/defaultavatar.jpg' %}" alt="" class="img-circle img-responsive"
+                   height="35px">
+                   {% endif %}
+                </a>
+            </span>
+            {% endfor %}
+            
+        </div>
+    </div>
     </div>
 </div>
 
