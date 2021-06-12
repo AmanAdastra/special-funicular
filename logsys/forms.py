@@ -19,11 +19,13 @@ class UserSignupForm(UserCreationForm):
         
         
 class UserLoginForm(AuthenticationForm):
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control form-control-lg ','autocomplete':'on','placeholder':'Password'}))
-    username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control form-control-lg','autocomplete':'on','placeholder':'Nickname'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control ','autocomplete':'on','placeholder':'Password'}))
+    username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control ','autocomplete':'on','placeholder':'Nickname'}))
     class Meta:
         model = User
-        
+        labels = {
+            'username': 'Writer',
+        }
         
 class UserProfileForm(UserChangeForm):
     password = None
