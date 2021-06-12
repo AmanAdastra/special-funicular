@@ -19,8 +19,8 @@ class UserSignupForm(UserCreationForm):
         
         
 class UserLoginForm(AuthenticationForm):
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control ','autocomplete':'on','placeholder':'Password'}))
-    username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control ','autocomplete':'on','placeholder':'Nickname'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control ','autocomplete':'on','placeholder':'Password'}),label_suffix="")
+    username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control ','autocomplete':'on','placeholder':'Nickname'}),label_suffix="",label="Nickname")
     class Meta:
         model = User
         labels = {
