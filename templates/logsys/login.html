@@ -3,18 +3,24 @@
 {% block title %}Login{% endblock title %}
 {% block content %}
 <section >
+    {% if messages %}
+    {% for msg in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{msg}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+    {% endif %}
+    {% if form.non_field_errors %}
+    {% for error in form.non_field_errors %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{error}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+    {% endif %}
     <div class="row g-0 d-flex justify-content-center">
         <div class="d-flex align-items-center text-center" style="height: 82vh;width: 320px;">
-            {% if messages %}
-            {% for msg in messages %}
-            {{msg}}
-            {% endfor %}
-            {% endif %}
-            {% if form.non_field_errors %}
-            {% for error in form.non_field_errors %}
-            {{error}}
-            {% endfor %}
-            {% endif %}
             <h2 class="text-center fs-1 fw-light my-2"></h2>
                     <form action="" method="post" autocomplete="on" class="my-2">
                         {% csrf_token %}
@@ -26,14 +32,43 @@
                         {% endfor %}
                         <button type="submit" class="btn btn-dark" style="width: 200px;">Login </button><br><br>                       
                         <a href="{% url 'password_reset' %}" class="link text-decoration-none">Forgot password?</a>
-                        <a href="{% url 'signup' %}" class="link text-decoration-none" >Create New Account </a>              
-                        
-                        
+                        <a href="{% url 'signup' %}" class="link text-decoration-none"data-bs-toggle="modal" data-bs-target="#signupmodal" >Create New Account </a>          
                     </form>
-                    <!-- Info page -->
         </div>
     
     </div>
+    <!-- Signup Model -->
+    <!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="signupmodal" tabindex="-1" aria-labelledby="signupmodal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="signupmodal">Welcome to Rayster</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="{% url 'signup' %}" method="post" autocomplete="on" class="my-2">
+                {% csrf_token %}
+                {% for field in form2 %}
+                <div class="form-floating mb-3" >
+                    {{field}}{{field.errors|striptags}}
+                    {{field.label_tag}}
+                </div>
+                {% endfor %}
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-dark" style="width: 200px;">Go Ahead</button><br><br>                       
+                  <a href="{% url 'signup' %}" class="link text-decoration-none" >Already have an Account? </a>           
+                  
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 

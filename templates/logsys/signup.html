@@ -1,32 +1,38 @@
 {% extends "logsys/base.html" %}
 {% block title %}Signup{% endblock title %}
 {% block content %}
-<div class="row d-flex justify-content-center">
-    <div class="col-md-5 shadow-sm p-3 mb-5 bg-body rounded">
-        <h2 class="text-center text-muted display-6"><u> Signup Quotables</u></h2>
-    {% if messages %}
-    {% for msg in messages %}
+<section>
+
+    <div class="row g-0 d-flex justify-content-center">
+        <div class="d-flex align-items-center text-center" style="height: 82vh;width: 320px;">
+        {% if messages %}
+        {% for msg in messages %}
         {{msg}}
-    {% endfor %}
-    {% endif %}
-    {% if form.non_field_errors %}
+        {% endfor %}
+        {% endif %}
+        {% if form.non_field_errors %}
         {% for error in form.non_field_errors %}
-            {{error}}
+        {{error}}
         {% endfor %}
-    {% endif %}
-<form action="" method="post" autocomplete="on" >
-    {% csrf_token %}
-        {% for field in form %}
-            {{field.label_tag}}{{field}}{{field.errors|striptags}} <br>
-        {% endfor %}
-        <div class="row d-flex">
-            <div class="col-12 text-center mt-2">
-                <a href="{% url 'login' %}" class="btn btn-outline-danger">Login</a>
-                <button type="submit" class="btn btn-outline-success">Signup</button>
+        {% endif %}
+        <h2 class="text-center fs-1 fw-light my-2"></h2>
+        <form action="" method="post" autocomplete="on" class="my-2">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="form-floating mb-3" style="width: 320px;">
+                {{field}}{{field.errors|striptags}}
+                {{field.label_tag}}
             </div>
-        </div>
-</form>
+            {% endfor %}
+            <button type="submit" class="btn btn-dark" style="width: 200px;">Go Ahead</button><br><br>                       
+            <a href="{% url 'signup' %}" class="link text-decoration-none" >Already have an Account? </a>              
+            
+            
+        </form>
+        <!-- Info page -->
     </div>
+    
 </div>
+</section>
 
 {% endblock content %}

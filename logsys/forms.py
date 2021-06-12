@@ -7,25 +7,23 @@ from .models import Profile
 # SignupForm
 
 class UserSignupForm(UserCreationForm):
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control','autocomplete':'new-password'}))
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control','autocomplete':'new-password'}))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control','autocomplete':'new-password','placeholder':'Password'}),label='Password')
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control','autocomplete':'new-password','placeholder':'Confirm Password'}),label='Confirm Password')
     class Meta:
         model = User
         fields = ['username','email']
         widgets ={
-            'username':forms.TextInput(attrs={'class':'form-control','autocomplete':'username'}),
-            'email':forms.EmailInput(attrs={'class':'form-control'})
+            'username':forms.TextInput(attrs={'class':'form-control','autocomplete':'username','placeholder':'Username'}),
+            'email':forms.EmailInput(attrs={'class':'form-control','placeholder':'Email'})
         }
         
         
 class UserLoginForm(AuthenticationForm):
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control ','autocomplete':'on','placeholder':'Password'}),label_suffix="")
-    username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control ','autocomplete':'on','placeholder':'Nickname'}),label_suffix="",label="Nickname")
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control ','autocomplete':'on','placeholder':'Password',}),label_suffix="")
+    username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control ','autocomplete':'on','placeholder':'Nickname','id':'loginusername'}),label_suffix="",label="Nickname")
     class Meta:
         model = User
-        labels = {
-            'username': 'Writer',
-        }
+      
         
 class UserProfileForm(UserChangeForm):
     password = None
