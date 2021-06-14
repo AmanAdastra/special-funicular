@@ -17,12 +17,16 @@ def usersignup(request):
         fm = UserSignupForm(request.POST)
         if fm.is_valid():
             fm.save()
-            return redirect("login")
+            messages.info(request, "Thanks for registering. You are now logged in.")
+            new_user = authenticate(username=fm.cleaned_data['username'],
+                                    password=fm.cleaned_data['password1'],
+                                    )
+            login(request, new_user)
+            return redirect("profile")
         else:
             messages.error(request,"Please enter Credentials according to our policy")
-            return redirect("login")
-    else:
-        return HttpResponse("Sorry you are not permitted here")
+    return redirect("login")
+    
 
 
 

@@ -32,7 +32,7 @@
                         {% endfor %}
                         <button type="submit" class="btn btn-dark" style="width: 200px;">Login </button><br><br>                       
                         <a href="{% url 'password_reset' %}" class="link text-decoration-none">Forgot password?</a>
-                        <a href="{% url 'signup' %}" class="link text-decoration-none"data-bs-toggle="modal" data-bs-target="#signupmodal" >Create New Account </a>          
+                        <a class="link text-decoration-none"data-bs-toggle="modal" data-bs-target="#signupmodal" >Create New Account </a>          
                     </form>
         </div>
     
@@ -61,7 +61,7 @@
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-dark" style="width: 200px;">Go Ahead</button><br><br>                       
-                  <a href="{% url 'signup' %}" class="link text-decoration-none" >Already have an Account? </a>           
+                  <a href="{% url 'login' %}" class="link text-decoration-none" >Already have an Account? </a>           
                   
                 </div>
             </form>
