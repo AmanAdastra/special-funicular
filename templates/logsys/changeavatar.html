@@ -1,13 +1,18 @@
 {% extends "logsys/base2.html" %}
 {% load static %}
 {% load i18n avatar_tags %}
-{% block title %}Quotable{% endblock title %}
+{% block title %}Rayster{% endblock title %}
 {% block content %}
-<div class="row mt-2 g-0">
-    <!-- Current Avatar -->
+
+    <div class="row g-0">
+        <!-- Current Avatar -->
     <div class="col-md-4 border border-bottom-0 text-center">
         <br>
-            <img src="{% static 'homeapp/images/defaultavatar.jpg' %}" alt="" class="img-circle img-responsive" height="200px">
+        {% if user|has_avatar %}
+        {% avatar user 200 class="img-fluid rounded-circle img-responsive mx-2" id="user_avatar" %}
+        {% else %}
+        <img src="{% static 'homeapp/images/defaultavatar.jpg' %}" alt="" class="img-circle img-responsive" height="200px">
+        {% endif %}
         <h5 class="text-muted ">Current Profile</h5>
     </div>
     <!-- End of Current Avatar -->
@@ -23,10 +28,10 @@
                 <div class="col">{{pic}}</div>
                 {% endfor %}
             </div>
-
+            
             <p>{% csrf_token %}<input type="submit" class="btn btn-light" value="{% trans 'Change Default' %}" /></p>
         </form>
-
+        
         {% endif %}
         <h5 class="text-muted " style="margin-left:10px ;"> Change Profile Picture </h5>
         <div>
@@ -35,24 +40,24 @@
                 <span class="d-inline-block col-8">{{ field}}</span>
                 {% endfor %}
                 <span>{% csrf_token %}<input type="submit" class="btn btn-success col-3"
-                        value="{% trans 'Submit' %}" /></span>
-            </form>
-        </div>
-        <!-- Ended uploading new avatar -->
-
-        <!-- Deleting old avatars -->
-        <form method="POST" action="{% url 'avatar_delete' %}">
-            <ul>
-                {{ delete_avatar_form}}
-            </ul>
-
+                    value="{% trans 'Submit' %}" /></span>
+                </form>
+            </div>
+            <!-- Ended uploading new avatar -->
+            
+            <!-- Deleting old avatars -->
+            <form method="POST" action="{% url 'avatar_delete' %}">
+                <ul>
+                    {{ delete_avatar_form}}
+                </ul>
+                
             <p>{% csrf_token %}<input type="submit" class="btn btn-secondary col-12 "
-                    value="{% trans 'Delete Previous Avatar\'s ' %}" /></p>
+                value="{% trans 'Delete Previous Avatar\'s ' %}" /></p>
         </form>
-
+        
     </div>
-
-
+    
+    
 </div>
 
 <hr>

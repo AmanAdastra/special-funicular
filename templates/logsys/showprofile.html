@@ -26,9 +26,9 @@
         <h5 class="pt-3 ">Nickname: {{request.user.username}}</h5>
 
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">Interest: {{request.user.interest|default:"Didn't made my mind"}}</li>
-          <li class="list-group-item">Habit: {{request.user.want|default:"Didn't made my mind"}}</li>
-          <li class="list-group-item">Wants: {{request.user.habi|default:"Didn't made my mind"}}</li>
+          <li class="list-group-item">Interest: {{request.user.profile.interest|default:"Didn't made my mind"}}</li>
+          <li class="list-group-item">Habit: {{request.user.profile.habit|default:"Didn't made my mind"}}</li>
+          <li class="list-group-item">Wants: {{request.user.profile.want|default:"Didn't made my mind"}}</li>
           <li class="list-group-item">Joined: {{request.user.date_joined|date:"D,d M, Y"}}</li>
         </ul>
 
@@ -41,38 +41,7 @@
   <!-- Habit, Skills and Achievement Section -->
 
   <div class="col-md-9">
-    <span class="display-6 p-2">About Me</span>
-    <div class="accordion" id="accordionExample">
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingOne">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-            aria-expanded="true" aria-controls="collapseOne">
-            <span>Skills</span>
-          </button>
-        </h2>
-        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-          data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            {{user.profile.skill|default:"Not Available"|capfirst}}
-          </div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingTwo">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            Habits
-          </button>
-        </h2>
-        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-          data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            {{user.profile.habit|default:"Not Available"|capfirst}}
-          </div>
-        </div>
-      </div>
-
-    </div>
+    <h1>#Coming Soon</h1>
   </div>
 
 
