@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from homeapp.forms import BucketForm
 from homeapp.models import Bucket
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
 # Create your views here.
 def home(request):
     user = User.objects.exclude(id=request.user.id)
@@ -19,6 +20,7 @@ def bucket(request):
         fm = BucketForm(request.POST,request.FILES)
         if fm.is_valid():
             fm.save()
+            return redirect("bucket")
     else:
         fm = BucketForm()
     stuff = Bucket.objects.all()
