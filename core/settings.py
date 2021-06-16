@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'avatar',
     'crispy_forms',
     'widget_tweaks',
+    'django_cleanup.apps.CleanupConfig',
 
 ]
 
