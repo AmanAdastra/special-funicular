@@ -13,6 +13,7 @@ from django.contrib.auth.models import User
 # User signup view
 
 def usersignup(request):
+    
     if request.method=="POST":
         fm = UserSignupForm(request.POST)
         if fm.is_valid():
@@ -31,6 +32,7 @@ def usersignup(request):
 
 
 def userlogin(request):
+    
     if request.user.is_authenticated:
         return redirect("profile")
     fm2= UserSignupForm(label_suffix='')
@@ -42,6 +44,10 @@ def userlogin(request):
             user = authenticate(username=uname,password=upass)
             if user is not None:
                 login(request,user)
+                next_url = request.GET.get('next')
+                print(next_url)
+                if next_url:
+                    return HttpResponseRedirect(next_url)
                 return redirect("home")
     else:
         fm = UserLoginForm()
