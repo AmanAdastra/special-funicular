@@ -19,7 +19,9 @@ def bucket(request):
     if request.method=="POST":
         fm = BucketForm(request.POST,request.FILES)
         if fm.is_valid():
-            fm.save()
+            instance = fm.save(commit=False)
+            instance.user = request.user
+            instance.save()
             return redirect("bucket")
     else:
         fm = BucketForm()

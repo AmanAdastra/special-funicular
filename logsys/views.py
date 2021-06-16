@@ -31,6 +31,8 @@ def usersignup(request):
 
 
 def userlogin(request):
+    if request.user.is_authenticated:
+        return redirect("profile")
     fm2= UserSignupForm(label_suffix='')
     if request.method=="POST":
         fm = UserLoginForm(request  = request, data = request.POST)
