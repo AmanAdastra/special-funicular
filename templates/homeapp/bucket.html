@@ -25,11 +25,14 @@
               </a></h5> -->
               <div id='{{item.user.id}}' onclick="getuserinfo(this)">
                 <span data-bs-toggle="modal" data-bs-target="#showuserinfo" id="modbtn">
+                  {% if item.user|has_avatar %}
                   {% avatar item.user 35 class="img-fluid rounded-circle img-responsive" id="user_avatar" %}
-                </span>
+                  {% else %}
+                  <img src="{% static 'homeapp/images/defaultavatar.jpg' %}" alt="" class="img-responsive"
+                  height="35px">
+                  {% endif %}                </span>
               </div>
-              <p class="card-text"><small class="text-muted">{{item.date}}</small></p>
-             
+              <p class="card-text"><small class="text-muted">{{item.date}}</small></p>       
               
 
             
@@ -83,19 +86,32 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="showuserinfo" tabindex="-1" aria-labelledby="showuserinfo" aria-hidden="true">
-  <div class="modal-dialog">
+<div class="modal fade " id="showuserinfo" tabindex="-1" aria-labelledby="showuserinfo" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="showuserinfo"><span id="username">Username</span></h5>
+        <h5 class="modal-title" id="showuserinfo">Owner's Profile</span></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body" id='myinfo'>
+      <div class="modal-body">
+        <!-- Card Starts here -->
+        <div class="card mb-3">
+          <div class="row g-0">
+            <div class="col" id="myinfo">           
+            </div>
+            <div class="col">
+              <div class="card-body">
+                <h5 class="card-title"><span id="username"></span></h5>
+                <p class="card-text">This is a wider card with supporting text below.</p>
+                <p class="card-text" id="last-login"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card ends here -->
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+      
     </div>
   </div>
 </div>
