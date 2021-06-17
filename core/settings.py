@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'logsys',
     'homeapp',
     'avatar',
@@ -167,3 +168,13 @@ EMAIL_HOST_PASSWORD = '9826211460'
 
 # Django crispy forms
 CRISPY_TEMPLATE_PACK = 'uni_form'
+
+
+# for api
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}

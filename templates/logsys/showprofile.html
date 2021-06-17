@@ -23,13 +23,13 @@
           {% endif %}
         </div>
 
-        <h5 class="pt-3 ">Nickname: {{request.user.username}}</h5>
+        <h5 class="pt-3 ">Nickname: {{user.username}}</h5>
 
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">Interest: {{request.user.profile.interest|default:"Didn't made my mind"}}</li>
-          <li class="list-group-item">Habit: {{request.user.profile.habit|default:"Didn't made my mind"}}</li>
-          <li class="list-group-item">Wants: {{request.user.profile.want|default:"Didn't made my mind"}}</li>
-          <li class="list-group-item">Joined: {{request.user.date_joined|date:"D,d M, Y"}}</li>
+          <li class="list-group-item">Interest: {{user.profile.interest|default:"Didn't made my mind"}}</li>
+          <li class="list-group-item">Habit: {{user.profile.habit|default:"Didn't made my mind"}}</li>
+          <li class="list-group-item">Wants: {{user.profile.want|default:"Didn't made my mind"}}</li>
+          <li class="list-group-item">Joined: {{user.date_joined|date:"D,d M, Y"}}</li>
         </ul>
 
       </div>
@@ -41,7 +41,8 @@
   <!-- Habit, Skills and Achievement Section -->
 
   <div class="col-md-9">
-    <h1>#Coming Soon</h1>
+    <h1>#Few Trials</h1>
+
   </div>
 
 

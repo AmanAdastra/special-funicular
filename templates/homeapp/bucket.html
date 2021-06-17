@@ -15,15 +15,22 @@
             <p class="card-text">{{item.notes}} </p>
             
             <h5 class="card-title">
-              <a href="{% url 'uprofile' item.user.id %}" class="py-2 ms-auto" data-toggle="tooltip" title="{{item.user.username}}">
+              <!-- <a href="{% url 'uprofile' item.user.id %}" class="py-2 ms-auto" data-toggle="tooltip" title="{{item.user.username}}">
                 {% if item.user|has_avatar %}
                 {% avatar item.user 35 class="img-fluid rounded-circle img-responsive" id="user_avatar" %}
                 {% else %}
                 <img src="{% static 'homeapp/images/defaultavatar.jpg' %}" alt="" class="img-circle img-responsive"
                 height="35px">
                 {% endif %}
-              </a></h5>
+              </a></h5> -->
+              <div id='{{item.user.id}}' onclick="getuserinfo(this)">
+                <span data-bs-toggle="modal" data-bs-target="#showuserinfo" id="modbtn">
+                  {% avatar item.user 35 class="img-fluid rounded-circle img-responsive" id="user_avatar" %}
+                </span>
+              </div>
               <p class="card-text"><small class="text-muted">{{item.date}}</small></p>
+             
+              
 
             
        </span>
@@ -47,7 +54,7 @@
 </div>
 
 
-<!-- Modal -->
+<!-- Modal for Put item-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -65,6 +72,29 @@
             <button type="submit" class="btn btn-primary">Submit</button>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Model for show user -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="showuserinfo" tabindex="-1" aria-labelledby="showuserinfo" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="showuserinfo"><span id="username">Username</span></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id='myinfo'>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>

@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
+from rest_framework import viewsets
+from .serializers import UserSerializer
 
 # Create your views here.
 
@@ -81,3 +83,13 @@ def userlogout(request):
 def showprofile(request,id=1):
     user = User.objects.get(pk=id)
     return render(request,"logsys/showprofile.html",{'user':user})
+
+
+
+
+
+
+# API for user view
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
