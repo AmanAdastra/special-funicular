@@ -16,9 +16,9 @@
     </div>
     <div >
       {% if request.user.is_authenticated %}
-          {% if user|has_avatar %}
+          {% if request.user|has_avatar %}
           <a href="{% url 'profile' %}" class="pr-2 btn">
-              {% avatar user 35 class="img-fluid rounded-circle img-responsive mx-2" id="user_avatar" %}
+              {% avatar request.user 35 class="img-fluid rounded-circle img-responsive mx-2" id="user_avatar" %}
            </a> 
           {% else %}
           <a href="{% url 'profile' %}" class="pr-2 btn">
