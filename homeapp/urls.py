@@ -4,4 +4,5 @@ urlpatterns = [
     path("",views.home,name='home'),
     path("bucket/",views.bucket,name='bucket'),
     path("people/",views.people,name='people'),
+    path('delitem/<int:id>/',views.bucketitemdel,name='delitem'),
 ]

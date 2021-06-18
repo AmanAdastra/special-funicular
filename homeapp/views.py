@@ -4,6 +4,7 @@ from homeapp.forms import BucketForm
 from homeapp.models import Bucket
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
+from django.contrib import messages
 # Create your views here.
 def home(request):
     user = User.objects.exclude(id=request.user.id)
@@ -34,3 +35,17 @@ def bucket(request):
 
 def people(request):
     return render(request,'homeapp/people.html')
+
+
+
+
+
+# Function for deleting items of user
+
+def bucketitemdel(request,id):
+    try:
+        obj = Bucket.objects.get(pk=id)
+        obj.delete()
+    except:
+        messages.error('Try Again letter')
+    return redirect("profile")

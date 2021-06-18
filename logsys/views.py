@@ -8,14 +8,13 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from .serializers import UserSerializer
-
+from homeapp.models import Bucket
 # Create your views here.
 
 
 # User signup view
 
-def usersignup(request):
-    
+def usersignup(request):    
     if request.method=="POST":
         fm = UserSignupForm(request.POST)
         if fm.is_valid():
@@ -69,8 +68,14 @@ def userprofile(request):
     else: 
         fm = UserProfileForm(instance = request.user)
         profile_form = ProfileForm(instance=request.user.profile)
+    items = Bucket.objects.filter(user=request.user.id)
+    context = {
+        'form':fm,
+        'profile_form': profile_form,
+        'items':items,
+        }
 
-    return render(request,"logsys/profile.html",{'form':fm,'profile_form': profile_form})
+    return render(request,"logsys/profile.html",context)
 
 @login_required(login_url='/logsys/login/')
 def userlogout(request):
@@ -93,3 +98,7 @@ def showprofile(request,id=1):
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    
+    
+    
+    
