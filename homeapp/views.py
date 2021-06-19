@@ -13,7 +13,11 @@ def home(request):
 
 
 def people(request):
-    return render(request,'homeapp/people.html')
+    user = User.objects.all()
+    context = {
+        'users':user
+    }
+    return render(request,'homeapp/people.html',context)
 
 
 @login_required(login_url='/logsys/login/')
@@ -37,8 +41,7 @@ def bucket(request):
     }
     return render(request,'homeapp/bucket.html',context)
 
-def people(request):
-    return render(request,'homeapp/people.html')
+
 
 
 

@@ -1,6 +1,44 @@
 {% extends 'homeapp/base.html' %}
-
+{% load widget_tweaks %}
+{% load static %}
+{% load avatar_tags %}
 {% block content %}
-<div></div>
+<div class="row flex-column-reverse flex-sm-row g-0 border">
+    <!-- Showing the users -->
+    <div class="col-sm-9 border-end pt-2">
+      <div class="row row-cols-2 row-cols-lg-4 row-cols-sm-3  g-4">
+        {% for user in users %}
+        <div class="col">
+          <div class="card h-80 p-2 border border-1  rounded">
+            {% if user|has_avatar %}
+            {% avatar user 200 class="img-fluid img-responsive" id="user_avatar" %}
+            {% else %}
+            <img src="{% static 'homeapp/images/defaultavatar.jpg' %}" alt="" class="img-responsive"
+              height="200px">
+            {% endif %}
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item g-0">An item</li>
+                    <li class="list-group-item g-0">A second item</li>
+                    <li class="list-group-item">A third item</li>
+                    <li class="list-group-item">A fourth item</li>
+                  </ul>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  
+    <!-- Column for put user in bucket -->
+    <!-- <div class="col-sm-3 p-2">
+      <div class="card text-dark  bg-light mb-3">
+        <div class="card-header">Bucket user</div>
+        <div class="card-body">
+          <h5 class="card-title">Coming Soon!</h5>
+          <p class="card-text">Place your stuff here </p>
+        </div>
+      </div>
+      <button class="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><span>Put in Bucket </span></button>
+    </div> -->
+  </div>
 
 {% endblock content %}
