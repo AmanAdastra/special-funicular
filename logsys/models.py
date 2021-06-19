@@ -9,6 +9,8 @@ class Profile(models.Model):
     interest = models.TextField(max_length=500, blank=True)
     habit  = models.TextField(max_length=500,blank=True)
     want = models.CharField(max_length=300,blank=True)
+    rep = models.IntegerField(default=10)
+
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -18,3 +20,5 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
+    
+    

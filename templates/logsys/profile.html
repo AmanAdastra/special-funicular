@@ -33,6 +33,8 @@
         <button class="btn btn-light shadow-sm p-1 my-2 bg-body rounded" data-bs-toggle="modal"
           data-bs-target="#exampleModal">Edit Profile</button>
         <h5 class="pt-3 ">Nickname: {{request.user.username}}</h5>
+        <span class="pt-3 fs-5 ">Reputation: {{request.user.profile.rep}}</span>
+        <hr>
 
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Email: {{request.user.email|default:"Didn't made my mind"}}</li>

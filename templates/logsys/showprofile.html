@@ -38,12 +38,30 @@
   </div>
   <!-- personel info completed -->
 
-  <!-- Habit, Skills and Achievement Section -->
-
-  <div class="col-md-9">
-    <h1>#Few Trials</h1>
-
+  <div class="col-sm-9 border-end p-2">
+    <h1 class="fs-4">#{{user.username|capfirst}}'s' Activity</h1>
+    <hr>
+    <div class="fs-2 text-center">Inventory's</div> <br>
+    <div class="row row-cols-2 row-cols-lg-4 row-cols-sm-3  g-4">
+      {% for item in items %}
+      <div class="col">
+        <div class="card h-100 p-2">
+          <img src="{{item.image.url}}" class="card-img-top" style="height: 200px;">
+          <div class="card-body">
+            <p class="card-text d-inline ">{{item.notes}} </p>
+            <div class="d-flex align-content-end flex-wrap">
+              <p class="card-text"><small class="text-muted fs-6">Posted: {{item.date}}</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
   </div>
+</div>
+  
+
+
 
 
 

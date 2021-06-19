@@ -2,3 +2,30 @@
     list-style-type: none;
 }
 
+#mySidenav a {
+    position: absolute; /* Position them relative to the browser window */
+    transition: 0.3s; /* Add transition on hover */
+    width: 20px; /* Set a specific width */
+    text-decoration: none; /* Remove underline */
+    font-size: 20px; /* Increase font size */
+    color: white; /* White text color */
+    border-radius: 5px; /* Rounded corners on the top right and bottom right side */
+  }
+  
+  /* The about link: 20px from the top with a green background */
+  #about {
+    top: 250px;
+  }
+  
+  #blog {
+    top: 290px;
+  }
+  
+  #projects {
+    top: 330px;
+  }
+  
+  #contact {
+    top: 370px;
+  }
+  

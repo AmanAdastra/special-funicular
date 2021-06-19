@@ -87,7 +87,12 @@ def userlogout(request):
 @login_required(login_url='/logsys/login/')
 def showprofile(request,id=1):
     user = User.objects.get(pk=id)
-    return render(request,"logsys/showprofile.html",{'user':user})
+    items = Bucket.objects.filter(user=user.id)
+    context = {
+        'user':user,
+        'items':items
+        }
+    return render(request,"logsys/showprofile.html",context)
 
 
 

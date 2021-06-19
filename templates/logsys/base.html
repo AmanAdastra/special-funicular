@@ -34,6 +34,10 @@
     <header>
       {% include 'homeapp/navbar.html' %}
     </header>
+    <nav class="d-lg-none d-md-block ">
+      {% include 'homeapp/sidenav.html' %}
+    </nav>
+
       {% block content %}{% endblock %}
     <footer>
       {% include 'homeapp/footer.html' %}

@@ -5,6 +5,7 @@ from homeapp.models import Bucket
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.contrib import messages
+from logsys.models import Profile
 # Create your views here.
 def home(request):
     user = User.objects.exclude(id=request.user.id)
@@ -23,6 +24,9 @@ def bucket(request):
             instance = fm.save(commit=False)
             instance.user = request.user
             instance.save()
+            obj = Profile.objects.get(user=request.user)
+            obj.rep+=10
+            obj.save()
             return redirect("bucket")
     else:
         fm = BucketForm()

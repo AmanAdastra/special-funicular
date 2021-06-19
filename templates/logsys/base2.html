@@ -33,7 +33,9 @@
     <header>
       {% include 'homeapp/navbar.html' %}
     </header>
-
+    <nav class="d-lg-none d-md-block ">
+      {% include 'homeapp/sidenav.html' %}
+    </nav>
     <section style="height: 83vh;">
       {% block content %}{% endblock %}
     </section>

@@ -3,4 +3,8 @@ from .models import Profile
 # Register your models here.
 @admin.register(Profile)
 class AdminProfile(admin.ModelAdmin):
-    list_display = ['id','want','interest','habit']
+    list_display = ['id','want','interest','habit','rep']
+    
+    
+    
+    
