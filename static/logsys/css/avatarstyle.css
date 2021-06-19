@@ -29,3 +29,18 @@
     top: 370px;
   }
   
+  ::-webkit-scrollbar {
+    height: 0px;
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(58, 51, 51); 
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #504a4a; 
+  }
