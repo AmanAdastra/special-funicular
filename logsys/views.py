@@ -46,7 +46,6 @@ def userlogin(request):
             if user is not None:
                 login(request,user)
                 next_url = request.GET.get('next')
-                print(next_url)
                 if next_url:
                     return HttpResponseRedirect(next_url)
                 return redirect("home")

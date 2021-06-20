@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.contrib import messages
 from logsys.models import Profile
+from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
+
 # Create your views here.
 def home(request):
     user = User.objects.exclude(id=request.user.id)
@@ -34,7 +36,17 @@ def bucket(request):
             return redirect("bucket")
     else:
         fm = BucketForm()
-    stuff = Bucket.objects.all()
+    stuff = Bucket.objects.all().order_by('date')
+    # Pagination Stuff
+    page = request.GET.get('page', 1)
+    paginator = Paginator(stuff, 8)
+    try:
+        stuff = paginator.page(page)
+    except PageNotAnInteger:
+        stuff = paginator.page(1)
+    except EmptyPage:
+        stuff = paginator.page(paginator.num_pages)
+    # End Pagination Stuff
     context = {
         'items':stuff,
         'form':fm,
