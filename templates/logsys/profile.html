@@ -20,17 +20,17 @@
   <div class="col-md-3  border-end  ">
     <div class="row g-0">
       <div class="col text-center">
-        <div>
+        <div class="mb-1">
           {% if user|has_avatar %}
           {% avatar user 200 class="img-fluid rounded img-responsive shadow p-3 mx-auto bg-body rounded "  id="user_avatar" %}
           {% else %}
-          <img src="{% static 'homeapp/images/defaultavatar.jpg' %}" alt="" class="img-circle img-responsive"
+          <img src="{% static 'homeapp/images/defaultavatar.png' %}" alt="" class="img-circle img-responsive"
             height="200px">
           {% endif %}
         </div>
-        <a type="button" class="btn btn-light shadow-sm p-1 my-2 bg-body rounded"
+        <a type="button" class="btn btn-dark text-white"
           href="{% url 'avatar_change' %}">Change Avatar</a>
-        <button class="btn btn-light shadow-sm p-1 my-2 bg-body rounded" data-bs-toggle="modal"
+        <button class="btn btn-dark text-white" data-bs-toggle="modal"
           data-bs-target="#exampleModal">Edit Profile</button>
         <h5 class="pt-3 ">Nickname: {{request.user.username}}</h5>
         <span class="pt-3 fs-5 ">Reputation: {{request.user.profile.rep}}</span>
