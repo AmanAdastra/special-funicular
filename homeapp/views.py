@@ -9,6 +9,11 @@ from logsys.models import Profile
 from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
 
 # Create your views here.
+def is_ajax(request):
+    return request.META.get("HTTP_X_REQUESTED_WITH") == "XMLHttpRequest"
+
+
+
 def home(request):
     user = User.objects.exclude(id=request.user.id)
     return render(request,'homeapp/home.html',{'users':user})
@@ -34,19 +39,19 @@ def bucket(request):
             obj.rep+=10
             obj.save()
             return redirect("bucket")
-    else:
-        fm = BucketForm()
-    stuff = Bucket.objects.all().order_by('date')
+        
+    fm = BucketForm()
+    stuff = Bucket.objects.all().order_by('-date')
     # Pagination Stuff
     page = request.GET.get('page', 1)
-    paginator = Paginator(stuff, 8)
+    paginator = Paginator(stuff, 4)
     try:
         stuff = paginator.page(page)
-    except PageNotAnInteger:
-        stuff = paginator.page(1)
     except EmptyPage:
-        stuff = paginator.page(paginator.num_pages)
+        stuff = {}
     # End Pagination Stuff
+    if is_ajax(request):
+        return render(request, 'homeapp/items.html', {'items': stuff})
     context = {
         'items':stuff,
         'form':fm,

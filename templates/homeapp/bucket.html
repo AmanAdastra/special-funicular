@@ -2,52 +2,27 @@
 {% load widget_tweaks %}
 {% load static %}
 {% load avatar_tags %}
+{% block extra_scripts %}
+<script src="{% static 'homeapp/js/infinite.js' %}"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    let bottomSentinel = document.querySelector("#bottom-sentinel");
+    let scrollElement = document.querySelector("#scroll-element");
+    let baseUrl = "{% url 'bucket' %}";
+    attachInfiniteScroll(bottomSentinel, scrollElement, baseUrl);
+  });
+</script>
+{% endblock extra_scripts%} 
 {% block content %}
 <div class="row flex-column-reverse flex-sm-row g-0 border">
   <!-- Showing the items -->
   <div class="col-sm-9 border-end pt-2">
-    <div class="row row-cols-2 row-cols-lg-4 row-cols-sm-3 infinite-container g-4">
-        {% for item in items %}
-        <div class="col">
-          <div class=" infinite-item  card h-100 p-2">
-            <img src="{{item.image.url}}" class="card-img-top" style="height: 200px;">
-            <div class="card-body">
-              <div class="row g-0">
-                <div class="col pt-2">
-                  <p class="card-text d-inline ">{{item.notes}} </p>
-                </div>
-                <div class="col text-end">
-                  <h5 class="card-title"></h5>
-                  <div id='{{item.user.id}}' onclick="getuserinfo(this)">
-                    <div data-bs-toggle="modal" data-bs-target="#showuserinfo" id="modbtn">
-                      {% if item.user|has_avatar %}
-                      {% avatar item.user 35 class="img-fluid rounded-circle img-responsive" id="user_avatar" %}
-                      {% else %}
-                      <img src="{% static 'homeapp/images/defaultavatar.png' %}" alt="" class="img-responsive"
-                        height="35px">
-                      {% endif %}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <p class="card-text"><small class="text-muted fs-6">Posted: {{item.date}}</small></p>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
+    <div class="row row-cols-2 row-cols-lg-4 row-cols-sm-3 g-4" id='scroll-element'>
+        {% include 'homeapp/items.html' with items=items %}
+    </div>        
+    <div id="bottom-sentinel">
+      
     </div>
-        {% if items.has_next %}
-        <a class="d-block infinite-more-link text-center fs-6 text-decoration-none text-dark border m-2" href="?page={{ items.next_page_number }}" style="background-color: rgb(247, 247, 247);">
-          Load More Content
-        </a>
-        {% endif %}
-        <div class="loading" style="display: none;">
-          Loading...
-        </div>
-
-
-
-
   </div>
 
   <!-- Column for put item in bucket -->
