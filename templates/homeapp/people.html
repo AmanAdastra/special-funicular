@@ -2,29 +2,25 @@
 {% load widget_tweaks %}
 {% load static %}
 {% load avatar_tags %}
+{% block extra_scripts %}
+<script src="{% static 'homeapp/js/infinite.js' %}"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    let bottomSentinel = document.querySelector("#bottom-sentinel");
+    let scrollElement = document.querySelector("#scroll-element");
+    let baseUrl = "{% url 'people' %}";
+    attachInfiniteScroll(bottomSentinel, scrollElement, baseUrl);
+  });
+</script>
+{% endblock extra_scripts%}
 {% block content %}
 <div class="row flex-column-reverse flex-sm-row g-0 border">
     <!-- Showing the users -->
     <div class="col-sm-9 border-end pt-2">
-      <div class="row row-cols-2 row-cols-lg-4 row-cols-sm-3  g-4">
-        {% for user in users %}
-        <div class="col">
-          <div class="card h-80 p-2 border border-1  rounded">
-            {% if user|has_avatar %}
-            {% avatar user 200 class="img-fluid img-responsive" id="user_avatar" %}
-            {% else %}
-            <img src="{% static 'homeapp/images/defaultavatar.png' %}" alt="" class="img-responsive"
-              height="200px">
-            {% endif %}
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item g-0">An item</li>
-                    <li class="list-group-item g-0">A second item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A fourth item</li>
-                  </ul>
-          </div>
-        </div>
-        {% endfor %}
+      <div class="row row-cols-2 row-cols-lg-4 row-cols-sm-3   g-4" id='scroll-element'>
+        {% include 'homeapp/persons.html'  with users=users %}
+      </div>
+      <div id="bottom-sentinel">     
       </div>
     </div>
   

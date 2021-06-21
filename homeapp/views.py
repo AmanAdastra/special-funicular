@@ -20,7 +20,17 @@ def home(request):
 
 
 def people(request):
-    user = User.objects.all()
+    user = User.objects.all().order_by('last_login')
+    # Pagination Stuff
+    page = request.GET.get('page', 1)
+    paginator = Paginator(user, 4)
+    try:
+        user = paginator.page(page)
+    except EmptyPage:
+        user = {}
+    # End Pagination Stuff
+    if is_ajax(request):
+        return render(request, 'homeapp/persons.html', {'users': user})
     context = {
         'users':user
     }
