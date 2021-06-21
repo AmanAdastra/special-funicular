@@ -90,3 +90,7 @@ div.scrollmenu a {
 #contact {
   top: 370px;
 }
+
+.foot-item:hover{
+  border-bottom:1px solid  red ;
+}
