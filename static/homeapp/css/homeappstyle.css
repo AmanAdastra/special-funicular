@@ -75,19 +75,19 @@ div.scrollmenu a {
 }
 
 /* The about link: 20px from the top with a green background */
-#about {
+#backarrow{
   top: 250px;
 }
 
-#blog {
+#globe{
   top: 290px;
 }
 
-#projects {
+#bucket{
   top: 330px;
 }
 
-#contact {
+#people{
   top: 370px;
 }
 

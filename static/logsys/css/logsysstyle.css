@@ -32,23 +32,23 @@
   }
   
   /* The about link: 20px from the top with a green background */
-  #about {
+  #backarrow{
     top: 250px;
-    background-color: #ffffff;
   }
   
-  #blog {
+  #globe{
     top: 290px;
-    background-color: #ffffff;
   }
   
-  #projects {
+  #bucket{
     top: 330px;
-    background-color: #ffffff;
   }
   
-  #contact {
+  #people{
     top: 370px;
-    background-color: #ffffff;
+  }
+  
+  .foot-item:hover{
+    border-bottom:1px solid  red ;
   }
   
