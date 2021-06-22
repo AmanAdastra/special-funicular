@@ -1,0 +1,99 @@
+{% extends 'homeapp/base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% load avatar_tags %}
+{% block extra_scripts %}
+<script src="{% static 'homeapp/js/infinite.js' %}"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    let bottomSentinel = document.querySelector("#bottom-sentinel");
+    let scrollElement = document.querySelector("#scroll-element");
+    let baseUrl = "{% url 'globe' %}";
+    attachInfiniteScroll(bottomSentinel, scrollElement, baseUrl);
+  });
+</script>
+{% endblock extra_scripts%} 
+{% block content %}
+<div class="row flex-column-reverse flex-sm-row g-0 border">
+  <!-- Showing the items -->
+  <div class="col-sm-9 border-end pt-2">
+    <div class="row row-cols-1 row-cols-lg-3  g-4" id='scroll-element'>
+        {% include 'homeapp/posts.html' with posts=posts %}
+    </div>        
+    <div id="bottom-sentinel">     
+    </div>
+  </div>
+
+  <!-- Column for put item in bucket -->
+  <div class="col-sm-3 p-2">
+    <div class="card text-dark  bg-light mb-3">
+      <div class="card-header">Post Item</div>
+      <div class="card-body">
+        <h5 class="card-title">Coming Soon!</h5>
+        <p class="card-text">Place your stuff here </p>
+      </div>
+    </div>
+    <button class="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><span>Create Post </span></button>
+  </div>
+</div>
+
+
+<!-- Modal for Put item-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create Post</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="" enctype='multipart/form-data'>
+          {% csrf_token %}
+          {% render_field form.heading rows="3" placeholder='Provide Heading' class="form-control" %}
+          {% render_field form.image class="form-control" %}
+          {% render_field form.theory rows="3" placeholder='Provide Description' class="form-control" %}
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Model for show user -->
+
+<div class="modal fade " id="showuserinfo" tabindex="-1" aria-labelledby="showuserinfo" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="showuserinfo">Owner's Profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Card Starts here -->
+        <div class="card mb-3">
+          <div class="row g-0">
+            <div class="col" id="myinfo">
+              <!-- Image is present here -->
+            </div>
+            <div class="col">
+              <div class="card-body">
+                <h5 class="card-title"><span id="username"></span></h5>
+                <p class="card-text"><span id="anchor"></span></p>
+                <p class="card-text" id="last-login"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card ends here -->
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock content %}

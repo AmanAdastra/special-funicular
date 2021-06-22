@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from homeapp.forms import BucketForm
-from homeapp.models import Bucket
+from homeapp.forms import BucketForm,ArticleForm
+from homeapp.models import Bucket,Article
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.contrib import messages
@@ -83,3 +83,38 @@ def bucketitemdel(request,id):
     except:
         messages.error('Try Again letter')
     return redirect("profile")
+
+
+
+# Funciton for globe
+
+@login_required(login_url='/logsys/login/')
+def globe(request):
+    if request.method=="POST":
+        fm = ArticleForm(request.POST,request.FILES)
+        if fm.is_valid():
+            instance = fm.save(commit=False)
+            instance.user = request.user
+            instance.save()
+            obj = Profile.objects.get(user=request.user)
+            obj.rep+=10
+            obj.save()
+            return redirect("globe")
+        
+    fm = ArticleForm()
+    stuff = Article.objects.all().order_by('-date')
+    # Pagination Stuff
+    page = request.GET.get('page', 1)
+    paginator = Paginator(stuff, 3)
+    try:
+        stuff = paginator.page(page)
+    except EmptyPage:
+        stuff = {}
+    # End Pagination Stuff
+    if is_ajax(request):
+        return render(request, 'homeapp/posts.html', {'posts': stuff})
+    context = {
+        'posts':stuff,
+        'form':fm,
+    }
+    return render(request,'homeapp/globe.html',context)
