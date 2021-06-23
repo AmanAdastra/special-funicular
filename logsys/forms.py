@@ -46,8 +46,11 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('interest','habit','want')
+        labels = {
+            'interest':'About Me'
+        }
         widgets = {
-            'interest':forms.Textarea(attrs={'class':'form-control textarea'}),
+            'interest':forms.Textarea(attrs={'class':'form-control textarea','placeholder':'About yourself'}),
             'habit':forms.Textarea(attrs={'class':'form-control textarea'}),
             'want':forms.TextInput(attrs={'class':'form-control'}),
         }

@@ -118,3 +118,11 @@ def globe(request):
         'form':fm,
     }
     return render(request,'homeapp/globe.html',context)
+
+
+
+# Show full article
+
+def fullarticle(request,id):
+    article = Article.objects.get(pk=id)
+    return render(request,'homeapp/fullarticle.html',{'post':article})

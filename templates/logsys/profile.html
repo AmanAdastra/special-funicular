@@ -38,7 +38,7 @@
 
         <ul class="list-group list-group-flush">
           <li class="list-group-item"> Email: {{request.user.email|default:"Didn't made my mind"}}  </li>
-          <li class="list-group-item">Interest: {{request.user.profile.interest|default:"Didn't made my mind"}}</li>
+          <li class="list-group-item">About Me: {{request.user.profile.interest|default:"Didn't made my mind"}}</li>
           <li class="list-group-item">Habit: {{request.user.profile.habit|default:"Didn't made my mind"}}</li>
           <li class="list-group-item">Wants: {{request.user.profile.want|default:"Didn't made my mind"}}</li>
           <li class="list-group-item">Joined: {{request.user.date_joined|date:"D,d M, Y"}}</li>

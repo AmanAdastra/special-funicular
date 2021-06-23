@@ -22,8 +22,8 @@
           </div>
         </div>
       </div>
-      <p>{{post.theory|truncatechars:200}}</p>
-      <a href="">Take me to full article</a>
+      <p>{{post.theory|truncatechars:75}}</p>
+      <a href="{% url 'fullarticle' post.id %}">Take me to full article</a>
       <p class="card-text"><small class="text-muted fs-6">Posted: {{post.date}}</small></p>
     </div>
   </div>
