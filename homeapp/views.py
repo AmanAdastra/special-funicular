@@ -125,4 +125,14 @@ def globe(request):
 
 def fullarticle(request,id):
     article = Article.objects.get(pk=id)
-    return render(request,'homeapp/fullarticle.html',{'post':article})
+    if request.method == 'POST':
+        fm = ArticleForm(request.POST,request.FILES,instance=article)
+        if fm.is_valid():
+            fm.save()
+            return redirect("/fullarticle/"+str(id))
+    else:
+        fm = ArticleForm(instance=article)
+    return render(request,'homeapp/fullarticle.html',{'post':article,'form':fm})
+
+
+    
