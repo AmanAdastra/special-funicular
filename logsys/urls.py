@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import userlogin,userlogout,userprofile,usersignup,showprofile,UserViewSet
+from .views import userlogin,userlogout,userprofile,usersignup,showprofile,UserViewSet,userpasschange
 from django.contrib.auth import views as auth_views
 
 from rest_framework.routers import DefaultRouter
@@ -24,5 +24,6 @@ urlpatterns = [
     
     # For user api
     path("user/",include(router.urls)),
+    path('passchange/',userpasschange,name='passchange'),
     
 ]

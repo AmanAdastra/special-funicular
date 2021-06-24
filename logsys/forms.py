@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm,AuthenticationForm,authenticate
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm,AuthenticationForm,authenticate,PasswordChangeForm
 from django.contrib.auth.models import User
 from django import forms
 from .models import Profile
@@ -54,3 +54,11 @@ class ProfileForm(forms.ModelForm):
             'habit':forms.Textarea(attrs={'class':'form-control textarea'}),
             'want':forms.TextInput(attrs={'class':'form-control'}),
         }
+        
+class UserPasswordChangeForm(PasswordChangeForm):
+    old_password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control ','autocomplete':'on','placeholder':'Old Password',}),label_suffix="")
+    new_password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control ','autocomplete':'on','placeholder':'New Password',}),label_suffix="")
+    new_password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control ','autocomplete':'on','placeholder':'Confirm New Password',}),label_suffix="")
+    class Meta:
+        model = User
+        fields = "__all__"

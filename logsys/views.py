@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .forms import UserSignupForm,UserLoginForm, UserProfileForm,ProfileForm
-from django.contrib.auth import authenticate, login, logout
+from .forms import UserSignupForm,UserLoginForm, UserProfileForm,ProfileForm,UserPasswordChangeForm
+from django.contrib.auth import authenticate, login, logout,update_session_auth_hash
 from django.http import HttpResponseRedirect,HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
@@ -32,8 +32,7 @@ def usersignup(request):
 
 
 
-def userlogin(request):
-    
+def userlogin(request):    
     if request.user.is_authenticated:
         return redirect("profile")
     fm2= UserSignupForm(label_suffix='')
@@ -81,6 +80,21 @@ def userlogout(request):
     logout(request)
     return redirect("home")
 
+
+
+
+@login_required(login_url='/logsys/login/')
+def userpasschange(request):
+    if request.method == 'POST':
+        fm = UserPasswordChangeForm(user=request.user,data=request.POST)
+        if fm.is_valid():
+            fm.save()
+            update_session_auth_hash(request,fm.user)
+            messages.success(request,'Passwrod Changed Successfully')
+            return redirect('profile')
+    else:
+        fm = UserPasswordChangeForm(user=request.user)
+    return render(request,'logsys/passchange.html',{'form':fm})
 
 
 @login_required(login_url='/logsys/login/')
