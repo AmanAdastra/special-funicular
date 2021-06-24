@@ -84,6 +84,14 @@ def bucketitemdel(request,id):
         messages.error('Try Again letter')
     return redirect("profile")
 
+def articleitemdel(request,id):
+    try:
+        obj = Article.objects.get(pk=id)
+        obj.delete()
+    except:
+        messages.error('Try Again letter')
+    return redirect("profile")
+
 
 
 # Funciton for globe

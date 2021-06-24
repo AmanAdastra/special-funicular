@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from .serializers import UserSerializer
-from homeapp.models import Bucket
+from homeapp.models import Bucket,Article
 # Create your views here.
 
 
@@ -67,10 +67,12 @@ def userprofile(request):
         fm = UserProfileForm(instance = request.user)
         profile_form = ProfileForm(instance=request.user.profile)
     items = Bucket.objects.filter(user=request.user.id)
+    article = Article.objects.filter(user=request.user.id)
     context = {
         'form':fm,
         'profile_form': profile_form,
         'items':items,
+        'posts':article,
         }
 
     return render(request,"logsys/profile.html",context)
@@ -101,9 +103,11 @@ def userpasschange(request):
 def showprofile(request,id=1):
     user = User.objects.get(pk=id)
     items = Bucket.objects.filter(user=user.id)
+    posts = Article.objects.filter(user=user.id)
     context = {
         'user':user,
-        'items':items
+        'items':items,
+        'posts':posts
         }
     return render(request,"logsys/showprofile.html",context)
 

@@ -22,22 +22,21 @@
       <div class="col text-center">
         <div class="mb-1">
           {% if user|has_avatar %}
-          {% avatar user 200 class="img-fluid rounded img-responsive shadow p-3 mx-auto bg-body rounded "  id="user_avatar" %}
+          {% avatar user 200 class="img-fluid rounded img-responsive shadow p-3 mx-auto bg-body rounded " id="user_avatar" %}
           {% else %}
           <img src="{% static 'homeapp/images/defaultavatar.png' %}" alt="" class="img-circle img-responsive"
             height="200px">
           {% endif %}
         </div>
-        <a type="button" class="btn btn-dark text-white m-1"
-          href="{% url 'avatar_change' %}">Change Avatar</a>
-        <button class="btn btn-dark text-white m-1" data-bs-toggle="modal"
-          data-bs-target="#exampleModal">Edit Profile</button>
+        <a type="button" class="btn btn-dark text-white m-1" href="{% url 'avatar_change' %}">Change Avatar</a>
+        <button class="btn btn-dark text-white m-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit
+          Profile</button>
         <h5 class="pt-3 ">Nickname: {{request.user.username}}</h5>
         <span class="pt-3 fs-5 ">Reputation: {{request.user.profile.rep}}</span>
         <hr>
 
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"> Email: {{request.user.email|default:"Didn't made my mind"}}  </li>
+          <li class="list-group-item"> Email: {{request.user.email|default:"Didn't made my mind"}} </li>
           <li class="list-group-item">About Me: {{request.user.profile.interest|default:"Didn't made my mind"}}</li>
           <li class="list-group-item">Habit: {{request.user.profile.habit|default:"Didn't made my mind"}}</li>
           <li class="list-group-item">Wants: {{request.user.profile.want|default:"Didn't made my mind"}}</li>
@@ -62,6 +61,31 @@
             <div class="d-flex align-content-end flex-wrap">
               <p class="card-text"><small class="text-muted fs-6">Posted: {{item.date}}</small></p>
               <a class="btn btn-danger " href="{% url 'delitem' item.id %}">Delete</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <h2>#Posts</h2>
+    <div class="row row-cols-2 row-cols-lg-4 row-cols-sm-3  g-4">
+      {% for post in posts %}
+      <div class="col">
+        <div class="card h-100 p-2">
+          <img src="{{post.image.url}}" class="card-img-top" style="height: 200px;">
+          <div class="card-body">
+            <p class="card-text d-inline ">{{post.title}} </p>
+            <div class="d-flex align-content-end flex-wrap">
+              <p class="card-text">
+                {{post.theory|truncatechars:20}}
+                <small class="text-muted fs-6">
+                  Posted: {{post.date}}</small>
+              </p>
+              <div>
+                <a class="btn btn-danger " href="{% url 'delpost' post.id %}">Delete</a>
+                <a class="btn btn-dark" href="{% url 'fullarticle' post.id %}">Update</a>
+              </div>
+
             </div>
           </div>
         </div>
