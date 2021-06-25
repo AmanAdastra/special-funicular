@@ -14,29 +14,33 @@
 </script>
 {% endblock extra_scripts%} 
 {% block content %}
-<div class="row flex-column-reverse flex-sm-row g-0 border">
-  <!-- Showing the items -->
-  <div class="col-sm-9 border-end pt-2">
-    <div class="row row-cols-2 row-cols-lg-4 row-cols-sm-3 g-4" id='scroll-element'>
-        {% include 'homeapp/items.html' with items=items %}
-    </div>        
-    <div id="bottom-sentinel">     
-    </div>
-  </div>
 
-  <!-- Column for put item in bucket -->
-  <div class="col-sm-3 p-2">
-    <div class="card text-dark  bg-light mb-3">
+<div class="row px-2 bg-light bg-gradient">
+  <!-- Showing the items -->
+  <div class="col-sm-3 order-sm-1 border-end p-2">
+    <div class="card ">
       <div class="card-header">Bucket Item</div>
       <div class="card-body">
         <h5 class="card-title">Coming Soon!</h5>
         <p class="card-text">Place your stuff here </p>
       </div>
     </div>
+  </div>
+  <!-- Column for put item in bucket -->
+  <div class="col-sm-3 order-sm-3  px-2">    
     <button class="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><span>Put in Bucket </span></button>
   </div>
-</div>
 
+  <!-- Column for posts -->
+  <div class="col-sm-6 border-end order-sm-2  ">
+    <div class="row " id='scroll-element'>
+      {% include 'homeapp/items.html' with items=items %}
+    </div>        
+    <div id="bottom-sentinel">     
+    </div>
+  </div>
+
+</div>
 
 <!-- Modal for Put item-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
