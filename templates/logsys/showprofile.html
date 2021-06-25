@@ -40,10 +40,9 @@
   <!-- personel info completed -->
 
   <div class="col-sm-9 border-end p-2">
-    <h1 class="fs-4">#{{user.username|capfirst}}'s' Activity</h1>
-    <hr>
+    
     <!-- For items -->
-    <div class="fs-2 text-center">Inventory's</div> <br>
+    <div class="fs-2">#My Contribution</div> <br>
     <div class="row row-cols-2 row-cols-lg-4 row-cols-sm-3  g-4">
       {% for item in items %}
       <div class="col">
@@ -62,7 +61,7 @@
 
     <!-- For posts -->
     <hr>
-    <div class="fs-2 text-center">My Post's</div> <br>
+    <div class="fs-2">#My Post's</div> <br>
     <div class="row row-cols-2 row-cols-lg-4 row-cols-sm-3  g-4">
       {% for post in posts %}
       <div class="col">

@@ -15,5 +15,5 @@ class Article(models.Model):
     image =models.ImageField(upload_to='thumbnail')
     heading = models.CharField(max_length=225,default="Article")
     theory = models.TextField(null=True,blank=True)
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField(auto_now=True)
     

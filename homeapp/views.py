@@ -120,9 +120,9 @@ def globe(request):
         stuff = {}
     # End Pagination Stuff
     if is_ajax(request):
-        return render(request, 'homeapp/posts.html', {'posts': stuff})
+        return render(request, 'homeapp/articles.html', {'articles': stuff})
     context = {
-        'posts':stuff,
+        'articles':stuff,
         'form':fm,
     }
     return render(request,'homeapp/globe.html',context)
@@ -140,7 +140,7 @@ def fullarticle(request,id):
             return redirect("/fullarticle/"+str(id))
     else:
         fm = ArticleForm(instance=article)
-    return render(request,'homeapp/fullarticle.html',{'post':article,'form':fm})
+    return render(request,'homeapp/fullarticle.html',{'article':article,'form':fm})
 
 
     
