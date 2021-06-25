@@ -1,9 +1,8 @@
 {% load avatar_tags %}
 {% load static %}
 {% for article in articles %}
-<div class="col">
+<div class="col-12 my-2">
   <div class="card h-100 p-2">
-    <img src="{{article.image.url}}" class="card-img-top" style="height: 200px;">
     <div class="card-body">
       <div class="row g-0">
         <div class="col pt-2">
@@ -22,9 +21,9 @@
           </div>
         </div>
       </div>
-      <p>{{article.theory|truncatechars:75}}</p>
-      <a href="{% url 'fullarticle' article.id %}">Take me to full article</a>
+      <p>{{article.theory|truncatechars:150}}</p>
       <p class="card-text"><small class="text-muted fs-6">Posted: {{article.date}}</small></p>
+      <a href="{% url 'fullarticle' article.id %}" >Take me to full article</a>
     </div>
   </div>
 </div>

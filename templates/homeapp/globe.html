@@ -14,27 +14,31 @@
 </script>
 {% endblock extra_scripts%} 
 {% block content %}
-<div class="row flex-column-reverse flex-sm-row g-0 border">
+<div class="row g-0 border bg-light bg-gradient">
   <!-- Showing the items -->
-  <div class="col-sm-9 border-end pt-2">
-    <div class="row row-cols-1 row-cols-lg-3  g-4" id='scroll-element'>
-        {% include 'homeapp/articles.html' with articles=articles %}
-    </div>        
-    <div id="bottom-sentinel">     
-    </div>
-  </div>
-
-  <!-- Column for put item in bucket -->
-  <div class="col-sm-3 p-2">
-    <div class="card text-dark  bg-light mb-3">
+  <div class="col-sm-3 order-sm-1  px-2">
+    <div class="card ">
       <div class="card-header">Post Item</div>
       <div class="card-body">
         <h5 class="card-title">Coming Soon!</h5>
         <p class="card-text">Place your stuff here </p>
       </div>
     </div>
+  </div>
+  <!-- Column for put item in bucket -->
+  <div class="col-sm-3 order-sm-3  px-2">    
     <button class="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><span>Create Post </span></button>
   </div>
+
+  <!-- Column for posts -->
+  <div class="col-sm-6 border-end order-sm-2  ">
+    <div class="row " id='scroll-element'>
+        {% include 'homeapp/articles.html' with articles=articles %}
+    </div>        
+    <div id="bottom-sentinel">     
+    </div>
+  </div>
+
 </div>
 
 
