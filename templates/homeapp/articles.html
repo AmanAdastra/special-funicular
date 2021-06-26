@@ -1,5 +1,7 @@
 {% load avatar_tags %}
 {% load static %}
+{% load humanize %}
+
 {% for article in articles %}
 <div class="col-12 my-2">
   <div class="card h-100 p-2">
@@ -22,7 +24,7 @@
         </div>
       </div>
       <p>{{article.theory|truncatechars:150}}</p>
-      <p class="card-text"><small class="text-muted fs-6">Posted: {{article.date}}</small></p>
+      <p class="card-text fs-6">Posted: <small class="text-muted">{{article.date|naturaltime}}</small></p>
       <a href="{% url 'fullarticle' article.id %}" >Take me to full article</a>
     </div>
   </div>
