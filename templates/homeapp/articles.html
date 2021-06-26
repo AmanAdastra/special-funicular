@@ -7,10 +7,11 @@
   <div class="card h-100 p-2">
     <div class="card-body">
       <div class="row g-0">
-        <div class="col pt-2">
+        <div class="col-10 pt-2">
           <p class="card-text d-inline fs-5 fw-bolder ">{{article.heading}} </p>
+          <span class="card-text"><small class="text-muted">{{article.date|naturaltime}}</small></span>
         </div>
-        <div class="col text-end">
+        <div class="col-2 text-end">
           <h5 class="card-title"></h5>
           <div id='{{article.user.id}}' onclick="getuserinfo(this)">
             <div data-bs-toggle="modal" data-bs-target="#showuserinfo" id="modbtn">
@@ -24,7 +25,6 @@
         </div>
       </div>
       <p>{{article.theory|truncatechars:150}}</p>
-      <p class="card-text fs-6">Posted: <small class="text-muted">{{article.date|naturaltime}}</small></p>
       <a href="{% url 'fullarticle' article.id %}" >Take me to full article</a>
     </div>
   </div>
