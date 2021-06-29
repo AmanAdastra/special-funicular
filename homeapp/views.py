@@ -16,7 +16,7 @@ def is_ajax(request):
 
 def home(request):
     user = User.objects.exclude(id=request.user.id)
-    return render(request,'homeapp/home.html',{'users':user})
+    return render(request,'homeapp/home/home.html',{'users':user})
 
 
 def people(request):
@@ -30,11 +30,11 @@ def people(request):
         user = {}
     # End Pagination Stuff
     if is_ajax(request):
-        return render(request, 'homeapp/persons.html', {'users': user})
+        return render(request, 'homeapp/people/persons.html', {'users': user})
     context = {
         'users':user
     }
-    return render(request,'homeapp/people.html',context)
+    return render(request,'homeapp/people/people.html',context)
 
 
 @login_required(login_url='/logsys/login/')
@@ -61,12 +61,12 @@ def bucket(request):
         stuff = {}
     # End Pagination Stuff
     if is_ajax(request):
-        return render(request, 'homeapp/items.html', {'items': stuff})
+        return render(request, 'homeapp/bucket/items.html', {'items': stuff})
     context = {
         'items':stuff,
         'form':fm,
     }
-    return render(request,'homeapp/bucket.html',context)
+    return render(request,'homeapp/bucket/bucket.html',context)
 
 
 
@@ -120,12 +120,12 @@ def globe(request):
         stuff = {}
     # End Pagination Stuff
     if is_ajax(request):
-        return render(request, 'homeapp/articles.html', {'articles': stuff})
+        return render(request, 'homeapp/globe/articles.html', {'articles': stuff})
     context = {
         'articles':stuff,
         'form':fm,
     }
-    return render(request,'homeapp/globe.html',context)
+    return render(request,'homeapp/globe/globe.html',context)
 
 
 
@@ -140,7 +140,7 @@ def fullarticle(request,id):
             return redirect("/fullarticle/"+str(id))
     else:
         fm = ArticleForm(instance=article)
-    return render(request,'homeapp/fullarticle.html',{'article':article,'form':fm})
+    return render(request,'homeapp/globe/fullarticle.html',{'article':article,'form':fm})
 
 
     
