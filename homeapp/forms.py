@@ -1,9 +1,14 @@
 from django import forms
-from .models import Bucket,Article
+from .models import Bucket,Article,Project
 
 class BucketForm(forms.ModelForm):
     class Meta:
         model =  Bucket
+        fields = ['image','notes']
+
+class ProjectForm(forms.ModelForm):
+    class Meta:
+        model =  Project
         fields = ['image','notes']
         
         

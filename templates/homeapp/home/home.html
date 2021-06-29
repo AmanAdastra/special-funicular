@@ -1,44 +1,145 @@
 {% extends 'homeapp/base.html' %}
 {% load avatar_tags %}
 {% load static %}
+{% load widget_tweaks %}
+<!-- Scripts  -->
+{% block extra_scripts %}
+<script src="{% static 'homeapp/js/infinite.js' %}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        let bottomSentinel = document.querySelector("#bottom-sentinel");
+        let scrollElement = document.querySelector("#scroll-element");
+        let baseUrl = "{% url 'home' %}";
+        attachInfiniteScroll(bottomSentinel, scrollElement, baseUrl);
+    });
+</script>
+{% endblock extra_scripts%}
+
+
 {% block content %}
 
-
-<div style="height: 83vh;">
-    {% if request.user.is_authenticated %}
-    <div>
-
-    </div>
-    {% else %}
-   <div class="row g-0 p-2" style="height: 27vh;">
-        <div class="col">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi quis, natus cum obcaecati ratione reprehenderit alias quos eos sunt tempora, vitae iure ut cumque quia architecto labore consequuntur officiis iusto.</div>
-   </div>
-   <div class="row g-0 p-2" style="height: 27vh;">
-       <div class="col">
-           Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste dignissimos, ducimus consectetur tempora aut voluptatibus atque odio labore animi perspiciatis alias vero earum ab repellendus fugiat similique blanditiis eos nisi?
-       </div>
-   </div>
-   {% endif %}
-   <div class="row g-0 p-2"  style="height: 27vh;">
-    <div class="col">        
+{% if request.user.is_authenticated %}
+<div class="row g-0 p-2">
+    <div class="col">
         <div class="scrollmenu">
-           {% for user in users %}
-           <span class="px-2">
-               <a href="{% url 'uprofile' user.id %}" class="py-2 " data-toggle="tooltip" title="{{user.username}}">
-                   {% if user|has_avatar %}
-                   {% avatar user 35 class="img-fluid rounded-circle img-responsive" id="user_avatar" %}
-                   {% else %}
-                   <img src="{% static 'homeapp/images/defaultavatar.png' %}" alt="" class="img-circle img-responsive"
-                   height="35px">
-                   {% endif %}
+            {% for user in users %}
+            <span class="px-2">
+                <a href="{% url 'uprofile' user.id %}" class="py-2" data-toggle="tooltip" title="{{user.username}}">
+                    {% if user|has_avatar %} {% avatar user 35 class="img-fluid rounded-circle img-responsive"   id="user_avatar" %} {% else %}
+                    <img src="{% static 'homeapp/images/defaultavatar.png' %}" alt=""
+                        class="img-circle img-responsive" height="35px" />
+                    {% endif %}
                 </a>
             </span>
             {% endfor %}
-            
         </div>
     </div>
+</div>
+<div class="row px-2 bg-light bg-gradient g-0">
+    <!-- Showing the items -->
+    <div class="col-sm-3 order-sm-1 border-end p-2">
+        <div class="card ">
+            <div class="card-header">Creative Art</div>
+            <div class="card-body">
+                <h5 class="card-title">Coming Soon!</h5>
+                <p class="card-text">Place your stuff here </p>
+            </div>
+        </div>
+    </div>
+    <!-- Column for put item in bucket -->
+    <div class="col-sm-3 order-sm-3  px-2">
+        <button class="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><span>Publish Art</span></button>
+    </div>
+
+    <!-- Column for posts -->
+    <div class="col-sm-6 border-end order-sm-2  ">
+        <div class="row " id='scroll-element'>
+            {% include 'homeapp/home/project.html' with items=items %}
+        </div>
+        <div id="bottom-sentinel">
+        </div>
+    </div>
+
+</div>
+
+<!-- Modal for Put item-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Put your Item</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="" enctype='multipart/form-data'>
+                    {% csrf_token %}
+                    {% render_field form.image class="form-control" %}
+                    {% render_field form.notes rows="3" placeholder='Provide Description' class="form-control" %}
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 
+
+
+<!-- Model for show user -->
+
+<div class="modal fade " id="showuserinfo" tabindex="-1" aria-labelledby="showuserinfo" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="showuserinfo">Owner's Profile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Card Starts here -->
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col" id="myinfo">
+                            <!-- Image is present here -->
+                        </div>
+                        <div class="col">
+                            <div class="card-body">
+                                <h5 class="card-title"><span id="username"></span></h5>
+                                <p class="card-text"><span id="anchor"></span></p>
+                                <p class="card-text" id="last-login"><small class="text-muted">Last updated 3 mins
+                                        ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card ends here -->
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% else %}
+<div>
+    <div class="row g-0 p-2">
+        <div class="col">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi quis,
+            natus cum obcaecati ratione reprehenderit alias quos eos sunt tempora,
+            vitae iure ut cumque quia architecto labore consequuntur officiis iusto.
+        </div>
+    </div>
+    <div class="row g-0 p-2">
+        <div class="col">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste
+            dignissimos, ducimus consectetur tempora aut voluptatibus atque odio
+            labore animi perspiciatis alias vero earum ab repellendus fugiat
+            similique blanditiis eos nisi?
+        </div>
+    </div>
+    {% endif %}
+    
+</div>
 
 {% endblock content %}

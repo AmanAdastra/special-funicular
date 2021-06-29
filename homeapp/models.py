@@ -17,3 +17,9 @@ class Article(models.Model):
     theory = models.TextField(null=True,blank=True)
     date = models.DateTimeField(auto_now=True)
     
+    
+class Project(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='project',default=1)
+    image = models.ImageField(upload_to='project')
+    notes = models.TextField(null=True,blank=True)
+    date = models.DateTimeField(auto_now=True)
