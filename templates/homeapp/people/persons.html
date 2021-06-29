@@ -2,7 +2,7 @@
 {% load avatar_tags%}
 
 {% for user in users %}
-<div class="col">
+<div class="col-4">
     <div class="card h-80 p-2 border border-1  rounded">
         {% if user|has_avatar %}
         {% avatar user 200 class="img-fluid img-responsive" id="user_avatar" %}
