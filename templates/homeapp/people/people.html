@@ -14,27 +14,35 @@
 </script>
 {% endblock extra_scripts%}
 {% block content %}
-<div class="row flex-column-reverse flex-sm-row g-0 border">
-    <!-- Showing the users -->
-    <div class="col-sm-9 border-end pt-2">
-      <div class="row row-cols-2 row-cols-lg-4 row-cols-sm-3   g-4" id='scroll-element'>
-        {% include 'homeapp/people/persons.html'  with users=users %}
-      </div>
-      <div id="bottom-sentinel">     
+
+<div class="row px-2 bg-light bg-gradient g-0">
+  <!-- Showing the items -->
+  <div class="col-sm-3 order-sm-1 border-end p-2">
+    <div class="card ">
+      <div class="card-header">Bucket Item</div>
+      <div class="card-body">
+        <h5 class="card-title">Coming Soon!</h5>
+        <p class="card-text">Place your stuff here </p>
       </div>
     </div>
-  
-    <!-- Column for put user in bucket -->
-    <!-- <div class="col-sm-3 p-2">
-      <div class="card text-dark  bg-light mb-3">
-        <div class="card-header">Bucket user</div>
-        <div class="card-body">
-          <h5 class="card-title">Coming Soon!</h5>
-          <p class="card-text">Place your stuff here </p>
-        </div>
-      </div>
-      <button class="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><span>Put in Bucket </span></button>
-    </div> -->
+  </div>
+  <!-- Column for put item in bucket -->
+  <div class="col-sm-3 order-sm-3  px-2">    
+    <button class="button" ><span>Add People </span></button>
   </div>
 
+  <!-- Column for posts -->
+  <div class="col-sm-6 border-end order-sm-2  ">
+    <div class="row " id='scroll-element'>
+      {% include 'homeapp/people/persons.html'  with users=users %}
+    </div>        
+    <div id="bottom-sentinel">     
+    </div>
+  </div>
+
+</div>
+
+
 {% endblock content %}
+
+

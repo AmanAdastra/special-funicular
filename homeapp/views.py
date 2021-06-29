@@ -16,7 +16,7 @@ def is_ajax(request):
 
 def home(request):
     user = User.objects.exclude(id=request.user.id)
-    return render(request,'homeapp/home/home.html',{'users':user})
+    return render(request,'homeapp/home/home.html',{'users':user,'activeness':'home'})
 
 
 def people(request):
@@ -32,7 +32,8 @@ def people(request):
     if is_ajax(request):
         return render(request, 'homeapp/people/persons.html', {'users': user})
     context = {
-        'users':user
+        'users':user,
+        'activeness':'people',
     }
     return render(request,'homeapp/people/people.html',context)
 
@@ -65,6 +66,7 @@ def bucket(request):
     context = {
         'items':stuff,
         'form':fm,
+        'activeness':'bucket',
     }
     return render(request,'homeapp/bucket/bucket.html',context)
 
@@ -124,6 +126,7 @@ def globe(request):
     context = {
         'articles':stuff,
         'form':fm,
+        'activeness':'globe'
     }
     return render(request,'homeapp/globe/globe.html',context)
 
@@ -140,7 +143,7 @@ def fullarticle(request,id):
             return redirect("/fullarticle/"+str(id))
     else:
         fm = ArticleForm(instance=article)
-    return render(request,'homeapp/globe/fullarticle.html',{'article':article,'form':fm})
+    return render(request,'homeapp/globe/fullarticle.html',{'article':article,'form':fm,'activeness':'article'})
 
 
     

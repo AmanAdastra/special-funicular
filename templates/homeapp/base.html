@@ -16,13 +16,13 @@
     <header>
       {% include 'homeapp/bars/navbar.html' %}
     </header>
-    <nav class="d-lg-none d-md-block ">
-      {% include 'homeapp/bars/sidenav.html' %}
-    </nav>
-    <section>
+    <section >
       {% block content %}{% endblock content %}
     </section>
-    <footer>
+    <nav class="d-block d-sm-none">
+      {% include 'homeapp/bars/sidenav.html' %}
+    </nav>
+    <footer class=" d-none d-sm-block">
       {% include 'homeapp/bars/footer.html' %}
     </footer>
     

@@ -20,33 +20,6 @@
   background: #504a4a; 
 }
 
-
-#mySidenav a {
-    position: absolute; /* Position them relative to the browser window */
-    transition: 0.3s; /* Add transition on hover */
-    width: 20px; /* Set a specific width */
-    text-decoration: none; /* Remove underline */
-    font-size: 20px; /* Increase font size */
-    color: white; /* White text color */
-    border-radius: 5px; /* Rounded corners on the top right and bottom right side */
-  }
-  
-  /* The about link: 20px from the top with a green background */
-  #backarrow{
-    top: 250px;
-  }
-  
-  #globe{
-    top: 290px;
-  }
-  
-  #bucket{
-    top: 330px;
-  }
-  
-  #people{
-    top: 370px;
-  }
   
   .foot-item:hover{
     border-bottom:1px solid  red ;

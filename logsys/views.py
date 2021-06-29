@@ -73,6 +73,8 @@ def userprofile(request):
         'profile_form': profile_form,
         'items':items,
         'posts':article,
+        'activeness':'profile',
+
         }
 
     return render(request,"logsys/profile.html",context)
@@ -107,7 +109,8 @@ def showprofile(request,id=1):
     context = {
         'user':user,
         'items':items,
-        'posts':posts
+        'posts':posts,
+        'activeness':'profile',
         }
     return render(request,"logsys/showprofile.html",context)
 
