@@ -22,6 +22,7 @@
 <div class="row g-0 bg-light bg-gradient p-2">
     <div class="col">
         <div class="scrollmenu">
+            <button class="btn btn-primary d-sm-none   " id="metabtn" data-bs-toggle="modal" data-bs-target="#exampleModal">+</button>
             {% for user in users %}
             <span class="px-2">
                 <a href="{% url 'uprofile' user.id %}" class="py-2" data-toggle="tooltip" title="{{user.username}}">
@@ -37,18 +38,19 @@
 </div>
 <div class="row px-2 bg-light bg-gradient g-0">
     <!-- Showing the items -->
-    <div class="col-sm-3 order-sm-1 border-end p-2">
+    <div class="col-sm-3 order-sm-1 border-end py-2">
         <div class="card ">
-            <div class="card-header">Creative Art</div>
+            <div class="card-header">Creative Model</div>
             <div class="card-body">
                 <h5 class="card-title">Coming Soon!</h5>
-                <p class="card-text">Place your stuff here </p>
+                <p class="card-text">Place your Model's here </p>
             </div>
         </div>
     </div>
     <!-- Column for put item in bucket -->
-    <div class="col-sm-3 order-sm-3  px-2">
-        <button class="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><span>Publish Art</span></button>
+    <div class="col-sm-3 order-sm-3 ">
+        <button class="button d-none d-sm-block " data-bs-toggle="modal" data-bs-target="#exampleModal"><span>Publish Model</span></button>
+        
     </div>
 
     <!-- Column for posts -->
@@ -58,16 +60,19 @@
         </div>
         <div id="bottom-sentinel">
         </div>
+        <div style="height: 20px;">
+
+        </div>
     </div>
 
 </div>
 
 <!-- Modal for Put item-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Put your Item</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Put your Model</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

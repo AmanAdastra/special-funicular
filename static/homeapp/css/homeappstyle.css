@@ -73,3 +73,15 @@ div.scrollmenu a {
 
 
 
+#metabtn{
+  height: 40px;
+  width: 40px;  
+  font-size: 15px;
+  border:0.5px solid rgb(116, 114, 114);
+  font-weight: bold;
+  border-radius: 50%;
+  background-color: rgb(255, 255, 255,0.5);
+  color: black;
+  cursor: pointer;  
+  z-index: 99;
+}
