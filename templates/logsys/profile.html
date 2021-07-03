@@ -81,9 +81,13 @@
                 <small class="text-muted fs-6">
                   Posted: {{post.date}}</small>
               </p>
-              <div>
-                <a class="btn btn-danger " href="{% url 'delpost' post.id %}">Delete</a>
-                <a class="btn btn-dark" href="{% url 'fullarticle' post.id %}">Update</a>
+              <div class=" row d-flex">
+                <div class="col">
+                  <a  href="{% url 'delpost' post.id %}"><img src="https://img.icons8.com/fluent-systems-regular/16/000000/delete-forever.png"/></a>
+                </div>
+                <div class="col">
+                  <a  href="{% url 'fullarticle' post.id %}"><img src="https://img.icons8.com/pastel-glyph/16/000000/update-file.png"/></a>
+                </div>
               </div>
 
             </div>

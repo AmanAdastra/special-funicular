@@ -68,6 +68,7 @@ def people(request):
 
 @login_required(login_url="/logsys/login/")
 def bucket(request):
+    user = User.objects.exclude(id=request.user.id)
     if request.method == "POST":
         fm = BucketForm(request.POST, request.FILES)
         if fm.is_valid():
@@ -95,6 +96,7 @@ def bucket(request):
         "items": stuff,
         "form": fm,
         "activeness": "bucket",
+        "user":user,
     }
     return render(request, "homeapp/bucket/bucket.html", context)
 
@@ -125,6 +127,7 @@ def articleitemdel(request, id):
 
 @login_required(login_url="/logsys/login/")
 def globe(request):
+    user = User.objects.exclude(id=request.user.id)
     if request.method == "POST":
         fm = ArticleForm(request.POST, request.FILES)
         if fm.is_valid():
@@ -148,7 +151,7 @@ def globe(request):
     # End Pagination Stuff
     if is_ajax(request):
         return render(request, "homeapp/globe/articles.html", {"articles": stuff})
-    context = {"articles": stuff, "form": fm, "activeness": "globe"}
+    context = {"articles": stuff, "form": fm, "activeness": "globe",'users':user}
     return render(request, "homeapp/globe/globe.html", context)
 
 
