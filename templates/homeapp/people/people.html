@@ -28,12 +28,11 @@
   </div>
   <!-- Column for put item in bucket -->
   <div class="col-sm-3 order-sm-3  px-2">    
-    <button class="button d-none d-sm-block" ><span>Add People </span></button>
+    
   </div>
 
   <!-- Column for posts -->
   <div class="col-sm-6 border-end order-sm-2  ">
-    <button class="btn btn-primary d-sm-none   " id="betabtn" data-bs-toggle="modal" data-bs-target="#exampleModal">+</button>
 
     <div class="row " id='scroll-element'>
       {% include 'homeapp/people/persons.html'  with users=users %}

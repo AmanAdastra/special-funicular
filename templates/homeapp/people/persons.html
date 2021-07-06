@@ -1,19 +1,18 @@
 {% load static %}
 {% load avatar_tags%}
-
+{% load humanize %}
 {% for user in users %}
 <div class="col-6 col-md-4">
-    <div class="card h-80 p-2">
+    <div class="card h-80 p-1 my-2">
         {% if user|has_avatar %}
         {% avatar user 200 class="img-fluid img-responsive" id="user_avatar" %}
         {% else %}
         <img src="{% static 'homeapp/images/defaultavatar.png' %}" alt="" class="img-fluid img-responsive" height="200px">
         {% endif %}
         <ul class="list-group list-group-flush">
-            <li class="list-group-item g-0">An item</li>
-            <li class="list-group-item g-0">A second item</li>
-            <li class="list-group-item">A third item</li>
-            <li class="list-group-item">A fourth item</li>
+            <li class="list-group-item g-0">Nickname: <span class="fw-bold">{{user.username}}</span></li>
+            <li class="list-group-item g-0">Reputation: <span class="fw-bold">{{user.profile.rep}}</span></li>
+            <li class="list-group-item">Joined: <span class="text-muted">{{user.date_joined|naturaltime}}</span></li>
         </ul>
     </div>
 </div>

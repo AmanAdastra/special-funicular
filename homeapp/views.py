@@ -49,6 +49,7 @@ def home(request):
 
 def people(request):
     user = User.objects.all().order_by("last_login")
+    user = sorted(user,key=lambda x:x.profile.rep,reverse=True)
     # Pagination Stuff
     page = request.GET.get("page", 1)
     paginator = Paginator(user, 4)
