@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-3o!!v6g)63%#ri&^xx!(#wm5i=spo%zm7gfk33rkkje7ehadme
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1',"rayster.herokuapp.com"]
 
 
 # Application definition
@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -179,3 +180,15 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+
+
+# Amazon s3 settings
+
+AWS_ACCESS_KEY_ID="AKIAYZD6HKDJE6AOXK56"
+AWS_SECRET_ACCESS_KEY="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"
+AWS_STORAGE_BUCKET_NAME="ahanabucket"
+AWS_QUERYSTRING_AUTH =False
