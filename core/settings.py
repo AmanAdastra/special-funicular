@@ -192,3 +192,10 @@ AWS_ACCESS_KEY_ID="AKIAYZD6HKDJE6AOXK56"
 AWS_SECRET_ACCESS_KEY="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"
 AWS_STORAGE_BUCKET_NAME="ahanabucket"
 AWS_QUERYSTRING_AUTH =False
+
+
+
+# Django-heroku settings
+
+import django_heroku
+django_heroku.settings(locals())
